@@ -152,7 +152,7 @@ image_data = image_data[shuffle_indexes]
 image_labels = image_labels[shuffle_indexes]
 
 # 将数据拆分为训练集和验证集
-X_train, X_val, y_train, y_val = train_test_split(image_data, image_labels, test_size=0.3, random_state=42,
+X_train, X_val, y_train, y_val = train_test_split(image_data, image_labels, test_size=0.3, random_state=43,
                                                   shuffle=True)
 # 图形归一化
 X_train = X_train / 255
