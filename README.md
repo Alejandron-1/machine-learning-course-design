@@ -133,7 +133,7 @@ model = keras.models.Sequential([
 	# Conv2D层 滤波器=16 kernel_size=3*3 激活函数='relu' 输入input_shape
 	# Conv2D层 滤波器=32 kernel_size=3*3 激活函数='relu' 
 	# 最大池化MaxPool2D层 pool_size=(2,2)
-	# 
+	# BatchNormalization 归一化  每一层都要归一化
     keras.layers.Conv2D(filters=16, kernel_size=(3,3), activation='relu', input_shape=(IMG_HEIGHT,IMG_WIDTH,channels)),
     keras.layers.Conv2D(filters=32, kernel_size=(3,3), activation='relu'),
     keras.layers.MaxPool2D(pool_size=(2, 2)),
@@ -143,7 +143,11 @@ model = keras.models.Sequential([
     keras.layers.Conv2D(filters=128, kernel_size=(3,3), activation='relu'),
     keras.layers.MaxPool2D(pool_size=(2, 2)),
     keras.layers.BatchNormalization(axis=-1),
+
     # 全连接层 512个节点 激活函数='relu'
+    # Flatten 多维数据的降维
+    # Dense 输出数组尺寸relu
+    # Dropout 随机丢弃 防止过拟合提高效果
     keras.layers.Flatten(),
     keras.layers.Dense(512, activation='relu'), # 全连接层
     keras.layers.BatchNormalization(),
@@ -156,7 +160,7 @@ model = keras.models.Sequential([
 lr = 0.001
 # 训练30次
 epochs = 30
-# Adam优化器编译模型，多分类损失用categorical_crossentropy
+# Adam优化器编译模型，多分类损失用categorical_crossentropy --> 自适应优化
 opt = Adam(lr=lr, decay=lr / (epochs * 0.5))
 model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
 
