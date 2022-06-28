@@ -102,3 +102,4 @@ heading = Label(top, text="Know Your Traffic Sign",pady=20, font=('arial',20,'bo
 heading.configure(background='#CDCDCD',foreground='#364156')
 heading.pack()
 top.mainloop()
+
